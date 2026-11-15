@@ -1,0 +1,22 @@
+# Copy to scope.yaml, fill in and sign before any scan or agent run (Part 14).
+engagement:
+  name: "Private AI Security Lab - internal range"
+  owner: "Your Name"
+  authorized_by: "Your Name"
+  valid_from: "2026-11-15"
+  valid_until: "2027-05-15"
+
+in_scope:
+  networks:
+    - "10.66.0.0/24"   # isolated lab range VLAN
+  hosts: []
+
+out_of_scope:
+  - "Anything not listed under in_scope"
+  - "The DGX Spark inference nodes"
+  - "The home or office network"
+
+rules:
+  internet_egress: false
+  human_approval_required: true
+  max_scan_rate_pps: 500
