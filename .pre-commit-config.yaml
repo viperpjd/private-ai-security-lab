@@ -1,0 +1,19 @@
+# Local hooks only: they use the pinned tools in .venv, so no hook code is fetched at commit time.
+repos:
+  - repo: local
+    hooks:
+      - id: detect-secrets
+        name: Block secrets (detect-secrets)
+        entry: .venv/bin/detect-secrets-hook --baseline .secrets.baseline
+        language: system
+        exclude: ^\.secrets\.baseline$
+      - id: shellcheck
+        name: Lint shell scripts (shellcheck)
+        entry: .venv/bin/shellcheck
+        language: system
+        types: [shell]
+      - id: yamllint
+        name: Lint YAML (yamllint)
+        entry: .venv/bin/yamllint --strict
+        language: system
+        types: [yaml]
