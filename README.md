@@ -21,7 +21,7 @@ hardened like production software.
 ## Quick start
 
 ```bash
-git clone <your-fork-url> private-ai-security-lab
+git clone https://github.com/viperpjd/private-ai-security-lab.git
 cd private-ai-security-lab
 make bootstrap   # creates .venv and installs the check tools
 make check       # runs every security check CI runs
