@@ -1,0 +1,28 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+    tags: ["article-*"]
+  pull_request:
+
+# Least privilege: CI only needs to read the repository.
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      # Part 4 pins every action to a full commit SHA.
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned check tools
+        run: pip install -r requirements-dev.txt
+      - name: Run all checks
+        run: bash scripts/check.sh
